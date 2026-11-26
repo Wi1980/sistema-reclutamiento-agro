@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Oculta el ojo nativo del navegador (Edge, IE) en campos password */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    @apply bg-stone-50 text-stone-800 antialiased;
+  }
+}
+
+@layer components {
+
+  /* ── Botones ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           bg-agro-700 text-white font-medium rounded-xl
+           hover:bg-agro-800 active:scale-95
+           transition-all duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed shadow-sm;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           bg-white text-agro-700 font-medium rounded-xl
+           border border-agro-200 hover:bg-agro-50 active:scale-95
+           transition-all duration-150 disabled:opacity-50;
+  }
+  .btn-forest {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           bg-forest-700 text-white font-medium rounded-xl
+           hover:bg-forest-800 active:scale-95
+           transition-all duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed shadow-sm;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2
+           bg-red-600 text-white font-medium rounded-lg
+           hover:bg-red-700 active:scale-95 transition-all duration-150;
+  }
+
+  /* ── Inputs ── */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-stone-200 bg-white
+           text-stone-800 placeholder-stone-400
+           focus:outline-none focus:ring-2 focus:ring-agro-400 focus:border-transparent
+           transition-all duration-150;
+  }
+  .label {
+    @apply block text-sm font-medium text-stone-600 mb-1;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply bg-white rounded-2xl border border-stone-100 shadow-sm;
+  }
+
+  /* ── Badges ── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  /* ── Tipografía ── */
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    @apply text-2xl font-semibold text-stone-800;
+  }
+}

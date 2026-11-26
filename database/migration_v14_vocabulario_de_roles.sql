@@ -1,0 +1,32 @@
+-- v14 — El nombre del rol pasa al vocabulario común de Agroexportadora
+--
+-- POR QUÉ. Desde que los cuatro sistemas reparten sus accesos desde Principal,
+-- sus roles se ven juntos en una misma pantalla, y ahí se notaba el desorden:
+-- aquí `viewer` en minúsculas, en Incidencias `VIEWER`, para la misma idea de
+-- solo lectura. Quien reparte accesos no puede adivinar si dos nombres
+-- parecidos son el mismo puesto.
+--
+-- La convención acordada: MAYÚSCULAS_CON_GUION_BAJO y una sola palabra por
+-- concepto en toda la empresa.
+--
+--   viewer -> CONSULTA   (el mismo nombre que en Incidencias)
+--
+-- QUÉ NO SE TOCA Y POR QUÉ:
+--
+--   `superadmin` y `admin` son de la primera versión del sistema y hoy no los
+--   usa nadie (los tres usuarios reales están en ROOT, RECLUTADORA_PRINCIPAL y
+--   CONTRATA). Renombrarlos sería mover algo que nadie mira; se quedan como
+--   están y no se publican al central.
+--
+--   `RECLUTADORA_PRINCIPAL` se queda con su nombre. Ya cumple la convención y
+--   es el puesto tal como se llama en la empresa. Cambiarlo a algo como
+--   JEFE_RECLUTAMIENTO sería tocar un sistema en producción para ganar nada.
+--
+-- Los usuarios apuntan al rol por `rol_id`, así que renombrar no mueve a nadie
+-- de su rol.
+--
+-- ⚠️  Este sistema está EN VIVO en Railway. Aplicar también allá al desplegar,
+--     junto con el código: si la base se renombra y el código no, o al revés,
+--     nadie con ese rol podría entrar.
+
+UPDATE roles SET nombre = 'CONSULTA' WHERE nombre COLLATE utf8mb4_bin = 'viewer';
